@@ -1,5 +1,6 @@
 from models.AddressBook import AddressBook
-from controllers.controllers import ContactsCtrl
+from operations.Contacts import ContactsOperations
+from operations.Birthdays import BirthdaysOperations
 from helpers.parser import parse_input
 
 CONTACTS_FILENAME = "contacts.bin"
@@ -22,23 +23,23 @@ def main() -> None:
             elif command == "hello":
                 print("🖐 Hi! How can I help you?")
             elif command == "all":
-                print(ContactsCtrl.show_all(book))
+                print(ContactsOperations.show_all(book))
             elif command == "add":
-                print(ContactsCtrl.add_contact(args, book))
+                print(ContactsOperations.add_contact(args, book))
             elif command == "change":
-                print(ContactsCtrl.change_contact(args, book))
+                print(ContactsOperations.change_contact(args, book))
             elif command == "delete":
-                print(ContactsCtrl.delete_contact(args, book))
+                print(ContactsOperations.delete_contact(args, book))
             elif command == "phone":
-                print(ContactsCtrl.show_phone(args, book))
+                print(ContactsOperations.show_phone(args, book))
             elif command == "remove-phone":
-                print(ContactsCtrl.remove_phone(args, book))
+                print(ContactsOperations.remove_phone(args, book))
             elif command == "birthdays":
-                print(ContactsCtrl.birthdays(book))
+                print(BirthdaysOperations.birthdays(book))
             elif command == "add-birthday":
-                print(ContactsCtrl.add_birthday(args, book))
+                print(BirthdaysOperations.add_birthday(args, book))
             elif command == "show-birthday":
-                print(ContactsCtrl.show_birthday(args, book))
+                print(BirthdaysOperations.show_birthday(args, book))
             else:
                 print("❌ Incorrect command.")
         except KeyboardInterrupt:
