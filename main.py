@@ -1,6 +1,7 @@
 from models.AddressBook import AddressBook
 from operations.Contacts import ContactsOperations
 from operations.Birthdays import BirthdaysOperations
+from operations.Phones import PhoneOperations
 from helpers.parser import parse_input
 
 CONTACTS_FILENAME = "contacts.bin"
@@ -31,9 +32,9 @@ def main() -> None:
             elif command == "delete":
                 print(ContactsOperations.delete_contact(args, book))
             elif command == "phone":
-                print(ContactsOperations.show_phone(args, book))
+                print(PhoneOperations.show_phone(args, book))
             elif command == "remove-phone":
-                print(ContactsOperations.remove_phone(args, book))
+                print(PhoneOperations.remove_phone(args, book))
             elif command == "birthdays":
                 print(BirthdaysOperations.birthdays(book))
             elif command == "add-birthday":

@@ -38,15 +38,3 @@ class ContactsOperations:
         name = args[0]
         book.delete(name)
         return "✔️ Contact deleted."
-
-    @input_error
-    def show_phone(args, book):
-        name = args[0]
-        return book.find(name)
-
-    @input_error
-    def remove_phone(args, book):
-        name, phone = args
-        record = book.find(name)
-        record.remove_phone(phone)
-        return "✔️ Phone removed."
