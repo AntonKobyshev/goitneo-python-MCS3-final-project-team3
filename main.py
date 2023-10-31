@@ -1,4 +1,4 @@
-from models.classes import AddressBook
+from models.AddressBook import AddressBook
 from controllers.controllers import ContactsCtrl
 from helpers.parser import parse_input
 
@@ -45,7 +45,7 @@ def main() -> None:
             print("\n ❌ Incorrect command.")
         except:
             book.save_to_file(CONTACTS_FILENAME)
-            print("❌ Somethingqqq went wrong.")
+            print("❌ Something went wrong.")
             break
 
 
