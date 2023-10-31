@@ -56,7 +56,5 @@ def main() -> None:
             break
 
 
-asdasfal
-
 if __name__ == "__main__":
     main()
