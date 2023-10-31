@@ -3,6 +3,7 @@ from operations.Contacts import ContactsOperations
 from operations.Birthdays import BirthdaysOperations
 from operations.Phones import PhoneOperations
 from operations.Addresses import AdressesOperations
+from operations.Emails import EmailsOperations
 from helpers.parser import parse_input
 
 CONTACTS_FILENAME = "contacts.bin"
@@ -46,6 +47,10 @@ def main() -> None:
                 print(AdressesOperations.add_address(args, book))
             elif command == "show-address":
                 print(AdressesOperations.show_address(args, book))
+            elif command == "add-email":
+                print(EmailsOperations.add_email(args, book))
+            elif command == "show-email":
+                print(EmailsOperations.show_email(args, book))
             else:
                 print("❌ Incorrect command.")
         except KeyboardInterrupt:

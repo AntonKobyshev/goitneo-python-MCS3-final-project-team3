@@ -2,6 +2,7 @@ from models.Name import Name
 from models.Phone import Phone
 from models.Birthday import Birthday
 from models.Address import Address
+from models.Email import Email
 
 from copy import copy
 from helpers.error import *
@@ -13,6 +14,7 @@ class Record:
         self.phones = []
         self.birthday = None
         self.address = None
+        self.email = None
 
     def __str__(self):
         return f"👤 Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -57,8 +59,14 @@ class Record:
     def show_birthday(self):
         return self.birthday
 
-    def add_address(self, birthday):
-        self.address = Address(birthday)
+    def add_address(self, address):
+        self.address = Address(address)
 
     def show_address(self):
         return self.address
+    
+    def add_email(self, email):
+        self.email = Email(email)
+
+    def show_email(self):
+        return self.email
