@@ -7,7 +7,12 @@ class ContactsOperations:
     def show_all(book):
         if not book:
             return "❌ Your phone book is empty."
-        return book
+
+        result = ""
+        for record in book.data.values():
+            result += str(record) + "\n"
+
+        return result if result else "❌ Your phone book is empty."
 
     @input_error
     def add_contact(args, book):

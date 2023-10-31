@@ -1,6 +1,7 @@
 from models.Name import Name
 from models.Phone import Phone
 from models.Birthday import Birthday
+from models.Address import Address
 
 from copy import copy
 from helpers.error import *
@@ -54,3 +55,9 @@ class Record:
 
     def show_birthday(self):
         return self.birthday
+
+    def add_address(self, birthday):
+        self.address = Address(birthday)
+
+    def show_address(self):
+        return self.address

@@ -2,6 +2,7 @@ from models.AddressBook import AddressBook
 from operations.Contacts import ContactsOperations
 from operations.Birthdays import BirthdaysOperations
 from operations.Phones import PhoneOperations
+from operations.Addresses import AdressesOperations
 from helpers.parser import parse_input
 
 CONTACTS_FILENAME = "contacts.bin"
@@ -41,6 +42,10 @@ def main() -> None:
                 print(BirthdaysOperations.add_birthday(args, book))
             elif command == "show-birthday":
                 print(BirthdaysOperations.show_birthday(args, book))
+            elif command == "add-address":
+                print(AdressesOperations.add_address(args, book))
+            elif command == "show-address":
+                print(AdressesOperations.show_address(args, book))
             else:
                 print("❌ Incorrect command.")
         except KeyboardInterrupt:
