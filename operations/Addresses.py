@@ -21,4 +21,4 @@ class AdressesOperations:
         if address:
             return address
         else:
-            return "❌ This contact does not have a birthday recorded."
+            return "❌ This contact does not have address recorded."
