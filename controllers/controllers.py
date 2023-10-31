@@ -1,5 +1,5 @@
 from helpers.decorators import input_error
-from classes import Record
+from models.classes import Record
 from helpers.error import RecordNotFound
 
 

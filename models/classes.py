@@ -91,7 +91,7 @@ class Record:
 
 
 class AddressBook(UserDict):
-    __PATH_CONTACTS_DB = Path(__file__).parent / "db"
+    __PATH_CONTACTS_DB = Path(__file__).parent.parent / "db"
 
     def __str__(self):
         return "".join([f"{record}\n" for record in self.data.values()]).rstrip("\n")

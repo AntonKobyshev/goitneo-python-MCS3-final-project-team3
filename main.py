@@ -1,5 +1,5 @@
-from classes import AddressBook
-from controllers import ContactsCtrl
+from models.classes import AddressBook
+from controllers.controllers import ContactsCtrl
 from helpers.parser import parse_input
 
 CONTACTS_FILENAME = "contacts.bin"
