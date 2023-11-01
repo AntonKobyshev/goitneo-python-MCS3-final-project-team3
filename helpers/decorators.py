@@ -15,6 +15,12 @@ def input_error(func):
             return error.message
         except IncorrectBirthday as error:
             return error.message
+        except IncorrectEmail as error:
+            return error.message
+        except IncorrectName as error:
+            return error.message
+        except IncorrectAddress as error:
+            return error.message
         except RecordNotFound as error:
             return f"A person with name {error.name} is not in your phone book."
         except RecordConflict as error:
