@@ -1,7 +1,7 @@
 from helpers.decorators import input_error
 
 
-class AdressesOperations:
+class AddressesOperations:
 
     @input_error
     def add_address(args, book):
