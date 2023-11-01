@@ -1,17 +1,21 @@
 import logging
 from models.AddressBook import AddressBook
+from models.NotesBook import NotesBook
 from operations.Contacts import ContactsOperations
 from operations.Birthdays import BirthdaysOperations
 from operations.Phones import PhoneOperations
 from operations.Addresses import AddressesOperations
 from operations.Emails import EmailsOperations
 from helpers.parser import parse_input
-from models.Note import Notes
 from operations.Notes import NotesOperations
 
-CONTACTS_FILENAME = "contacts.bin"
 
-def execute_command(command, args, book):
+CONTACTS_FILENAME = "contacts.bin"
+NOTES_FILENAME = "notes.bin"
+
+
+def execute_command(command, args, book, notes):
+
     if command.lower() == "all":
         result = ContactsOperations.show_all(book)
     elif command.lower() == "add":
@@ -61,15 +65,17 @@ def execute_command(command, args, book):
         result = "❌ Incorrect command"
 
     book.save_to_file(CONTACTS_FILENAME)
+    notes.save_to_file(NOTES_FILENAME)
 
     return result
 
+
 def main() -> None:
     logging.basicConfig(filename='app.log', level=logging.INFO)
-
+    notes = NotesBook()
     book = AddressBook()
     book.read_from_file(CONTACTS_FILENAME)
-    notes = {}
+    notes.read_from_file(NOTES_FILENAME)
 
     print("🤖 Welcome to the assistant bot!")
 
@@ -77,12 +83,12 @@ def main() -> None:
         try:
             user_input = input("⌨️ Enter a command: ")
             command, *args = parse_input(user_input)
-            result = execute_command(command, args, book)
+            result = execute_command(command, args, book, notes)
             print(result)
 
             if result == "🖐 Good bye!":
                 break
-                
+
         except KeyboardInterrupt:
             print("\n❌ Incorrect command.")
         except Exception as e:
