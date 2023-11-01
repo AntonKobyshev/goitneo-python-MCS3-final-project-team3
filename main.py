@@ -39,7 +39,7 @@ def execute_command(command, args, book):
         result = EmailsOperations.show_email(args, book)
     elif command.lower() in ["close", "exit"]:
         result = "🖐 Good bye!"
-        return result  # Завершити програму
+        return result
     elif command.lower() == "hello":
         result = "🖐 Hi! How can I help you?"
     else:
