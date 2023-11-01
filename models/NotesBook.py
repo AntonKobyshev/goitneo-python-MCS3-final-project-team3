@@ -1,46 +1,42 @@
 import pickle
-from models.Birthday import Birthday
 
 from pathlib import Path
-from datetime import datetime
-from collections import UserDict, defaultdict
-from helpers.weekdays_list import WEEKDAYS
+from collections import UserDict
 from helpers.error import *
 
 
 class NotesBook(UserDict):
     __PATH_CONTACTS_DB = Path(__file__).parent.parent / "db"
-    WEEKDAYS = WEEKDAYS
 
     def __str__(self):
         return "".join([f"{record}\n" for record in self.data.values()]).rstrip("\n")
 
     def add_record(self, record):
-        name = record.name.value
+        title = record.title.value
 
-        if name in self.data:
-            raise RecordConflict(name)
+        if title in self.data:
+            raise RecordConflict(title)
         else:
-            self.data[name] = record
+            self.data[title] = record
 
-    def find(self, name):
-        if not name in self.data:
-            raise RecordNotFound(name)
+    def find(self, title):
+        if not title in self.data:
+            raise RecordNotFound(title)
         else:
-            return self.data[name]
+            return self.data[title]
 
-    def delete(self, name):
-        if not name in self.data:
-            raise RecordNotFound(name)
+    def delete(self, title):
+        if not title in self.data:
+            raise RecordNotFound(title)
         else:
-            self.data.pop(name)
+            self.data.pop(title)
 
-    def save_to_file(self, filename):
-        with open(self.__PATH_CONTACTS_DB / filename, "wb") as fh:
+    def save_to_file(self, filetitle):
+        with open(self.__PATH_CONTACTS_DB / filetitle, "wb") as fh:
             pickle.dump(self, fh)
 
-    def read_from_file(self, filename):
-        path = self.__PATH_CONTACTS_DB / filename
+    def read_from_file(self, filetitle):
+        path = self.__PATH_CONTACTS_DB / filetitle
 
         if not path.exists():
             return
