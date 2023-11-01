@@ -5,13 +5,15 @@ from operations.Phones import PhoneOperations
 from operations.Addresses import AdressesOperations
 from operations.Emails import EmailsOperations
 from helpers.parser import parse_input
+from models.Note import Notes
+from operations.Notes import NotesOperations
 
 CONTACTS_FILENAME = "contacts.bin"
-
 
 def main() -> None:
     book = AddressBook()
     book.read_from_file(CONTACTS_FILENAME)
+    notes = {}
     print("🤖 Welcome to the assistant bot!")
 
     while True:
@@ -23,6 +25,7 @@ def main() -> None:
                 book.save_to_file(CONTACTS_FILENAME)
                 print("🖐 Good bye!")
                 break
+
             elif command == "hello":
                 print("🖐 Hi! How can I help you?")
             elif command == "all":
@@ -51,6 +54,16 @@ def main() -> None:
                 print(EmailsOperations.add_email(args, book))
             elif command == "show-email":
                 print(EmailsOperations.show_email(args, book))
+            elif command == "all-notes":
+                print(NotesOperations.show_all(notes))
+            elif command == "add-note":
+                print(NotesOperations.add_note(args, notes))
+            elif command == "find-note":
+                print(NotesOperations.find_note(args, notes))
+            elif command == "edit-note":
+                print(NotesOperations.edit_note(args, notes))
+            elif command == "delete-note":
+                print(NotesOperations.delete_note(args, notes))
             else:
                 print("❌ Incorrect command.")
         except KeyboardInterrupt:
