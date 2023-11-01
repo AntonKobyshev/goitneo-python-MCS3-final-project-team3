@@ -17,7 +17,19 @@ class Record:
         self.email = None
 
     def __str__(self):
-        return f"👤 Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+        phone_str = '; '.join(p.value for p in self.phones)
+        email_str = self.email.value if self.email else ""
+        address_str = self.address.value if self.address else ""
+
+        result = f"👤 Contact name: {self.name.value}, phone(s): {phone_str}"
+
+        if email_str:
+            result += f", email: {email_str}"
+
+        if address_str:
+            result += f", address: {address_str}"
+
+        return result
 
     def add_phone(self, new_phone):
         try:
@@ -64,7 +76,7 @@ class Record:
 
     def show_address(self):
         return self.address
-    
+
     def add_email(self, email):
         self.email = Email(email)
 
