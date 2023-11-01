@@ -1,9 +1,14 @@
+import re
 from models.Field import Field
 
 
 class Email(Field):
-    # def __init__(self, value):
-    #     if "@" not in value or "." not in value.split("@")[-1] or " " in value:
-    #         raise ValueError("invalid email address.")
-    #     super.__init__(value)
-    pass
+    def __init__(self, value):
+        if not self.is_valid_email(value):
+            raise ValueError(
+                "Incorrect email address. Email should have format xxx@xxx.xxx")
+        super().__init__(value)
+
+    def is_valid_email(self, email):
+        pattern = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+        return re.match(pattern, email) is not None

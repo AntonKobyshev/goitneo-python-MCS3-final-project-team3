@@ -4,11 +4,11 @@ from helpers.error import IncorrectBirthday
 
 
 class Birthday(Field):
-    _BIRTHDAY_DATE_FORMAT = "%d.%m.%Y"
+    _BIRTHDAY_FORMAT = "%d.%m.%Y"
 
     def __init__(self, value):
         try:
-            datetime.strptime(value, Birthday._BIRTHDAY_DATE_FORMAT)
+            datetime.strptime(value, Birthday._BIRTHDAY_FORMAT)
         except ValueError:
             raise IncorrectBirthday("📅 Birthday must be 'DD.MM.YYYY' format.")
         else:
