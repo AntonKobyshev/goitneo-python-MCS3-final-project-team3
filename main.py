@@ -18,17 +18,17 @@ def execute_command(command, args, book, notes):
 
     if command.lower() == "all":
         result = ContactsOperations.show_all(book)
-    elif command.lower() == "add":
+    elif command.lower() == "add-contact":
         result = ContactsOperations.add_contact(args, book)
-    elif command.lower() == "change":
+    elif command.lower() == "edit-contact":
         result = ContactsOperations.change_contact(args, book)
-    elif command.lower() == "delete":
+    elif command.lower() == "delete-contact":
         result = ContactsOperations.delete_contact(args, book)
-    elif command.lower() == "phone":
+    elif command.lower() == "show-phone":
         result = PhoneOperations.show_phone(args, book)
     elif command.lower() == "remove-phone":
         result = PhoneOperations.remove_phone(args, book)
-    elif command.lower() == "birthdays":
+    elif command.lower() == "show-birthdays":
         try:
             days_until_birthday = int(input("Enter the number of days: "))
             result = BirthdaysOperations.birthdays(book, days_until_birthday)
