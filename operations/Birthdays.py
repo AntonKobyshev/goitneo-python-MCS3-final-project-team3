@@ -5,9 +5,9 @@ class BirthdaysOperations:
 
     @input_error
     def birthdays(book, days_until_birthday):
-        birthdays_per_week = book.get_birthdays_per_week(days_until_birthday)
-        if birthdays_per_week:
-            return "\n".join(birthdays_per_week)
+        birthdays_in_range = book.get_birthdays(days_until_birthday)
+        if birthdays_in_range:
+            return "\n".join(birthdays_in_range)
         else:
             return "❌ No birthdays for the specified number of days."
 

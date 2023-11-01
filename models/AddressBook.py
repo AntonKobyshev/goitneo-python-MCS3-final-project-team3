@@ -35,8 +35,8 @@ class AddressBook(UserDict):
         else:
             self.data.pop(name)
 
-    def get_birthdays_per_week(self, days_until_birthday):
-        grouped_users = defaultdict(list)
+    def get_birthdays(self, days_until_birthday):
+        matching_birthdays = []
 
         today = datetime.today().date()
 
@@ -57,24 +57,12 @@ class AddressBook(UserDict):
             delta_days = (birthday_this_year - today).days
 
             if 0 <= delta_days <= days_until_birthday:
-                weekday = birthday_this_year.weekday()
-                if weekday == 5 or weekday == 6:
-                    day_of_week = self.WEEKDAYS[0]
-                else:
-                    day_of_week = birthday_this_year.strftime("%A")
-                formatted_date = birthday_this_year.strftime("%Y-%m-%d")
-                grouped_users[day_of_week].append(f"{name} ({formatted_date})")
+                day_of_week = birthday_this_year.strftime("%A")
+                formatted_date = birthday_this_year.strftime("%d %b %Y")
+                user_info = f"{name}: {day_of_week}, {formatted_date}"
+                matching_birthdays.append(user_info)
 
-        birthdays_per_week = list()
-
-        for day_of_week in self.WEEKDAYS:
-            users_list = grouped_users[day_of_week]
-            if users_list:
-                user_info = "\n".join(users_list)
-                weekdays_list = f"{day_of_week}:\n{user_info}"
-                birthdays_per_week.append(weekdays_list)
-
-        return birthdays_per_week
+        return matching_birthdays
 
     def save_to_file(self, filename):
         with open(self.__PATH_CONTACTS_DB / filename, "wb") as fh:

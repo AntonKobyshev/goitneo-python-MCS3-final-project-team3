@@ -23,7 +23,7 @@ def execute_command(command, args, book):
         result = PhoneOperations.show_phone(args, book)
     elif command.lower() == "remove-phone":
         result = PhoneOperations.remove_phone(args, book)
-    if command.lower() == "birthdays":
+    elif command.lower() == "birthdays":
         try:
             days_until_birthday = int(input("Enter the number of days: "))
             result = BirthdaysOperations.birthdays(book, days_until_birthday)
