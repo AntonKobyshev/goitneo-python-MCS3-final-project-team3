@@ -10,6 +10,22 @@ class IncorrectBirthday(Exception):
         self.message = message
 
 
+class IncorrectEmail(Exception):
+    def __init__(self, message, *args):
+        super().__init__(*args)
+        self.message = message
+
+class IncorrectName(Exception):
+    def __init__(self, message, *args):
+        super().__init__(*args)
+        self.message = message
+
+class IncorrectAddress(Exception):
+    def __init__(self, message, *args):
+        super().__init__(*args)
+        self.message = message
+
+
 class RecordNotFound(Exception):
     def __init__(self, name, *args):
         super().__init__(*args)

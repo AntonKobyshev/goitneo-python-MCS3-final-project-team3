@@ -10,6 +10,7 @@ from helpers.error import *
 
 class AddressBook(UserDict):
     __PATH_CONTACTS_DB = Path(__file__).parent.parent / "db"
+    WEEKDAYS = WEEKDAYS
 
     def __str__(self):
         return "".join([f"{record}\n" for record in self.data.values()]).rstrip("\n")
@@ -34,8 +35,8 @@ class AddressBook(UserDict):
         else:
             self.data.pop(name)
 
-    def get_birthdays_per_week(self):
-        grouped_users = defaultdict(list)
+    def get_birthdays(self, days_until_birthday):
+        matching_birthdays = []
 
         today = datetime.today().date()
 
@@ -55,23 +56,13 @@ class AddressBook(UserDict):
 
             delta_days = (birthday_this_year - today).days
 
-            if delta_days < 7:
-                weekday = birthday_this_year.weekday()
-                if weekday == 5 or weekday == 6:
-                    grouped_users[WEEKDAYS[0]].append(name)
-                    continue
+            if 0 <= delta_days <= days_until_birthday:
+                day_of_week = birthday_this_year.strftime("%A")
+                formatted_date = birthday_this_year.strftime("%d %b %Y")
+                user_info = f"{name}: {day_of_week}, {formatted_date}"
+                matching_birthdays.append(user_info)
 
-                grouped_users[birthday_this_year.strftime("%A")].append(name)
-
-        birthdays_per_week = list()
-
-        for weekday in WEEKDAYS:
-            users_list = grouped_users[weekday]
-            if users_list:
-                weekday_list = f"{weekday}: {', '.join(users_list)}"
-                birthdays_per_week.append(weekday_list)
-
-        return birthdays_per_week
+        return matching_birthdays
 
     def save_to_file(self, filename):
         with open(self.__PATH_CONTACTS_DB / filename, "wb") as fh:

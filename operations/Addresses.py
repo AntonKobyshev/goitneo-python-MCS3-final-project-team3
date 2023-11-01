@@ -1,12 +1,12 @@
 from helpers.decorators import input_error
 
 
-class AdressesOperations:
+class AddressesOperations:
 
     @input_error
     def add_address(args, book):
         if len(args) != 2:
-            return "❌ Give me name address please."
+            return "❌ Give me some address please."
 
         name, address = args
         record = book.find(name)
