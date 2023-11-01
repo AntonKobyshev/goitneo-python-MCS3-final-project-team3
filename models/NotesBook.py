@@ -6,7 +6,7 @@ from helpers.error import *
 
 
 class NotesBook(UserDict):
-    __PATH_CONTACTS_DB = Path(__file__).parent.parent / "db"
+    __PATH_NOTES_DB = Path(__file__).parent.parent / "db"
 
     def __str__(self):
         return "".join([f"{record}\n" for record in self.data.values()]).rstrip("\n")
@@ -32,11 +32,11 @@ class NotesBook(UserDict):
             self.data.pop(title)
 
     def save_to_file(self, filetitle):
-        with open(self.__PATH_CONTACTS_DB / filetitle, "wb") as fh:
+        with open(self.__PATH_NOTES_DB / filetitle, "wb") as fh:
             pickle.dump(self, fh)
 
     def read_from_file(self, filetitle):
-        path = self.__PATH_CONTACTS_DB / filetitle
+        path = self.__PATH_NOTES_DB / filetitle
 
         if not path.exists():
             return
