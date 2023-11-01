@@ -37,8 +37,13 @@ def execute_command(command, args, book):
         result = EmailsOperations.add_email(args, book)
     elif command.lower() == "show-email":
         result = EmailsOperations.show_email(args, book)
+    elif command.lower() in ["close", "exit"]:
+        result = "🖐 Good bye!"
+        return result  # Завершити програму
+    elif command.lower() == "hello":
+        result = "🖐 Hi! How can I help you?"
     else:
-        result = "❌ Incorrect command."
+        result = "❌ Incorrect command"
 
     book.save_to_file(CONTACTS_FILENAME)
 
@@ -59,6 +64,9 @@ def main() -> None:
             command, *args = parse_input(user_input)
             result = execute_command(command, args, book)
             print(result)
+
+            if result == "🖐 Good bye!":
+                break
 
         except KeyboardInterrupt:
             print("\n❌ Incorrect command.")
