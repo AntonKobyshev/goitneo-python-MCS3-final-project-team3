@@ -1,5 +1,5 @@
 from models.Field import Field
-from helpers.error import IncorrectPhone
+from helpers.errors import IncorrectPhone
 
 
 class Phone(Field):

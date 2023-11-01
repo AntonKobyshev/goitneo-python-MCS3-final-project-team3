@@ -4,7 +4,7 @@ from models.Birthday import Birthday
 from models.Address import Address
 
 from copy import copy
-from helpers.error import *
+from helpers.errors import *
 
 
 class Record:

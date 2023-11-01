@@ -1,5 +1,4 @@
-from helpers.error import *
-
+from helpers.errors import *
 
 def input_error(func):
     def inner(*args, **kwargs):

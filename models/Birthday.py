@@ -1,6 +1,6 @@
 from models.Field import Field
 from datetime import datetime
-from helpers.error import IncorrectBirthday
+from helpers.errors import IncorrectBirthday
 
 
 class Birthday(Field):

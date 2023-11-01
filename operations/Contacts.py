@@ -1,6 +1,6 @@
 from helpers.decorators import input_error
 from models.Record import Record
-from helpers.error import RecordNotFound
+from helpers.errors import RecordNotFound
 
 
 class ContactsOperations:

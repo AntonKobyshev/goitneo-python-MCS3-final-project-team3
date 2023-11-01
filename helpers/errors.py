@@ -10,18 +10,6 @@ class IncorrectBirthday(Exception):
         self.message = message
 
 
-class RecordNotFound(Exception):
-    def __init__(self, name, *args):
-        super().__init__(*args)
-        self.name = name
-
-
-class RecordConflict(Exception):
-    def __init__(self, name, *args):
-        super().__init__(*args)
-        self.name = name
-
-
 class PhoneNotFound(Exception):
     def __init__(self, name, phone, *args):
         super().__init__(*args)
@@ -34,3 +22,15 @@ class PhoneConflict(Exception):
         super().__init__(*args)
         self.name = name
         self.phone = phone
+
+
+class RecordNotFound(Exception):
+    def __init__(self, name, *args):
+        super().__init__(*args)
+        self.name = name
+
+
+class RecordConflict(Exception):
+    def __init__(self, name, *args):
+        super().__init__(*args)
+        self.name = name
