@@ -16,7 +16,7 @@ NOTES_FILENAME = "notes.bin"
 
 def execute_command(command, args, book, notes):
 
-    if command.lower() == "all":
+    if command.lower() == "all-contacts":
         result = ContactsOperations.show_all(book)
     elif command.lower() == "add-contact":
         result = ContactsOperations.add_contact(args, book)
