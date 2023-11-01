@@ -23,8 +23,12 @@ def execute_command(command, args, book):
         result = PhoneOperations.show_phone(args, book)
     elif command.lower() == "remove-phone":
         result = PhoneOperations.remove_phone(args, book)
-    elif command.lower() == "birthdays":
-        result = BirthdaysOperations.birthdays(book)
+    if command.lower() == "birthdays":
+        try:
+            days_until_birthday = int(input("Enter the number of days: "))
+            result = BirthdaysOperations.birthdays(book, days_until_birthday)
+        except ValueError:
+            result = "❌ Invalid number of days. Please enter a valid integer."
     elif command.lower() == "add-birthday":
         result = BirthdaysOperations.add_birthday(args, book)
     elif command.lower() == "show-birthday":

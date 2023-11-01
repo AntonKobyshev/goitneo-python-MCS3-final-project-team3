@@ -4,12 +4,12 @@ from helpers.decorators import input_error
 class BirthdaysOperations:
 
     @input_error
-    def birthdays(book):
-        birthdays_per_week = book.get_birthdays_per_week()
+    def birthdays(book, days_until_birthday):
+        birthdays_per_week = book.get_birthdays_per_week(days_until_birthday)
         if birthdays_per_week:
-            return "\n".join(book.get_birthdays_per_week())
+            return "\n".join(birthdays_per_week)
         else:
-            return "❌ No birthdays for the next week."
+            return "❌ No birthdays for the specified number of days."
 
     @input_error
     def add_birthday(args, book):
