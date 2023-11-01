@@ -6,9 +6,10 @@ from operations.Phones import PhoneOperations
 from operations.Addresses import AddressesOperations
 from operations.Emails import EmailsOperations
 from helpers.parser import parse_input
+from models.Note import Notes
+from operations.Notes import NotesOperations
 
 CONTACTS_FILENAME = "contacts.bin"
-
 
 def execute_command(command, args, book):
     if command.lower() == "all":
@@ -41,6 +42,16 @@ def execute_command(command, args, book):
         result = EmailsOperations.add_email(args, book)
     elif command.lower() == "show-email":
         result = EmailsOperations.show_email(args, book)
+    elif command.lower() == "all-notes":
+        result = NotesOperations.show_all(notes)
+    elif command.lower() == "add-note":
+        result = NotesOperations.add_note(args, notes)
+    elif command.lower() == "find-note":
+        result = NotesOperations.find_note(args, notes)
+    elif command.lower() == "edit-note":
+        result = NotesOperations.edit_note(args, notes)
+    elif command.lower() == "delete-note":
+        result = NotesOperations.delete_note(args, notes)
     elif command.lower() in ["close", "exit"]:
         result = "🖐 Good bye!"
         return result
@@ -53,12 +64,12 @@ def execute_command(command, args, book):
 
     return result
 
-
 def main() -> None:
     logging.basicConfig(filename='app.log', level=logging.INFO)
 
     book = AddressBook()
     book.read_from_file(CONTACTS_FILENAME)
+    notes = {}
 
     print("🤖 Welcome to the assistant bot!")
 
@@ -71,7 +82,7 @@ def main() -> None:
 
             if result == "🖐 Good bye!":
                 break
-
+                
         except KeyboardInterrupt:
             print("\n❌ Incorrect command.")
         except Exception as e:

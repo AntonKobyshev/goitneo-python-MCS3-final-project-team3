@@ -1,9 +1,10 @@
 from models.Field import Field
 
 
-class Note(Field):
+class Notes(Field):
     def __init__(self, title, text):
-        pass
+        self.title = title
+        self.text = text
 
     def __str__(self):
-        pass
+        return f"📝 Note title: {self.title}, text: {self.text}"
