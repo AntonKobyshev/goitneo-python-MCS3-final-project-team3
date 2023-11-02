@@ -8,6 +8,7 @@ from operations.Addresses import AddressesOperations
 from operations.Emails import EmailsOperations
 from helpers.parser import parse_input
 from operations.Notes import NotesOperations
+from helpers.command_helper import get_suggested_commands
 
 
 CONTACTS_FILENAME = "contacts.bin"
@@ -83,11 +84,26 @@ def main() -> None:
         try:
             user_input = input("⌨️ Enter a command: ")
             command, *args = parse_input(user_input)
-            result = execute_command(command, args, book, notes)
-            print(result)
 
-            if result == "🖐 Good bye!":
-                break
+            available_commands = [
+            "all", "add", "change", "delete", "phone", "remove-phone", "birthdays",
+            "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
+            "show-email", "all-notes", "add-note", "find-note", "edit-note", "delete-note",
+            "close", "exit", "hello"
+            ]
+
+            if command.lower() in available_commands:
+                result = execute_command(command, args, book, notes)
+                print(result)
+
+                if result == "🖐 Good bye!":
+                    break
+            else:
+                suggested_commands = get_suggested_commands(command, available_commands)
+                if suggested_commands:
+                    print("Did you mean:", ', '.join(suggested_commands), "?")
+                else:
+                    print("🤔 Command not found. Try again.")
 
         except KeyboardInterrupt:
             print("\n❌ Incorrect command.")
