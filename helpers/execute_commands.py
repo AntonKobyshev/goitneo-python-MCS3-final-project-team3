@@ -4,10 +4,11 @@ from operations.Phones import PhoneOperations
 from operations.Addresses import AddressesOperations
 from operations.Emails import EmailsOperations
 from operations.Notes import NotesOperations
-from helpers.list_of_commands import *
+from helpers.help import *
 
 CONTACTS_FILENAME = "contacts.bin"
 NOTES_FILENAME = "notes.bin"
+
 
 def execute_command(command, args, book, notes):
     # contacts block
