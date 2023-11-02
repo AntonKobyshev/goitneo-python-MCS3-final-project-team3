@@ -1,6 +1,7 @@
 from helpers.decorators import input_error
 from models.Record import Record
 from helpers.error import RecordNotFound
+import re
 
 
 class ContactsOperations:
@@ -38,3 +39,23 @@ class ContactsOperations:
         name = args[0]
         book.delete(name)
         return "✔️ Contact deleted."
+
+    @input_error
+    def find_contact(args, book):
+
+        search_char = args[0]
+
+        if len(search_char) < 2:
+            return "❌ Give me at least 2 characters from the name, please."
+
+        matching_records = []
+
+        for record_name, record in book.data.items():
+            if re.search(search_char, record_name, re.IGNORECASE):
+                matching_records.append(
+                    f"👤 Name: {record.name}, Phone: {record.phones[0]}")
+
+        if not matching_records:
+            return "❌ No matching contacts found."
+
+        return "\n".join(matching_records)

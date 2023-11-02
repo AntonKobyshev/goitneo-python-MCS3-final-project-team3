@@ -20,6 +20,7 @@ class Record:
         phone_str = '; '.join(p.value for p in self.phones)
         email_str = self.email.value if self.email else ""
         address_str = self.address.value if self.address else ""
+        birthday_str = self.birthday.value if self.birthday else ""
 
         result = f"👤 Contact name: {self.name.value}, phone(s): {phone_str}"
 
@@ -28,6 +29,9 @@ class Record:
 
         if address_str:
             result += f", address: {address_str}"
+
+        if address_str:
+            result += f", birthday: {birthday_str}"
 
         return result
 

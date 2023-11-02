@@ -1,9 +1,8 @@
 import pickle
 from models.Birthday import Birthday
-
 from pathlib import Path
 from datetime import datetime
-from collections import UserDict, defaultdict
+from collections import UserDict
 from helpers.weekdays_list import WEEKDAYS
 from helpers.error import *
 

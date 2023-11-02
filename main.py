@@ -21,6 +21,8 @@ def execute_command(command, args, book, notes):
         result = ContactsOperations.show_all(book)
     elif command.lower() == "add-contact":
         result = ContactsOperations.add_contact(args, book)
+    elif command.lower() == "find-contact":
+        result = ContactsOperations.find_contact(args, book)
     elif command.lower() == "edit-contact":
         result = ContactsOperations.change_contact(args, book)
     elif command.lower() == "delete-contact":
@@ -32,8 +34,8 @@ def execute_command(command, args, book, notes):
         # birthdays block
     elif command.lower() == "show-birthdays":
         try:
-            days_until_birthday = int(input("Enter the number of days: "))
-            result = BirthdaysOperations.birthdays(book, days_until_birthday)
+            args = int(input("Enter the number of days: "))
+            result = BirthdaysOperations.birthdays(book, args)
         except ValueError:
             result = "❌ Invalid number of days. Please enter a valid integer."
     elif command.lower() == "add-birthday":
@@ -91,7 +93,7 @@ def main() -> None:
             command, *args = parse_input(user_input)
 
             available_commands = [
-                "all-contacts", "add-contact", "edit-contact", "delete-contact", "show-phone", "remove-phone", "birthdays",
+                "all-contacts", "add-contact", "find-contact", "edit-contact", "delete-contact", "show-phone", "remove-phone", "show-birthdays",
                 "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
                 "show-email", "all-notes", "add-note", "find-note", "edit-note", "delete-note",
                 "close", "exit", "hello"
