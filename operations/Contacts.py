@@ -25,7 +25,7 @@ class ContactsOperations:
         return "✔️ Contact added."
 
     @input_error
-    def change_contact(args, book):
+    def edit_contact(args, book):
         if len(args) != 3:
             return "❌ Give me name, old phone and new phone please."
 

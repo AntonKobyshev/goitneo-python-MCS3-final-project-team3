@@ -24,7 +24,7 @@ def execute_command(command, args, book, notes):
     elif command.lower() == "find-contact":
         result = ContactsOperations.find_contact(args, book)
     elif command.lower() == "edit-contact":
-        result = ContactsOperations.change_contact(args, book)
+        result = ContactsOperations.edit_contact(args, book)
     elif command.lower() == "delete-contact":
         result = ContactsOperations.delete_contact(args, book)
     elif command.lower() == "show-phone":
