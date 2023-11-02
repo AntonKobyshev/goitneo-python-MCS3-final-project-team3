@@ -16,7 +16,7 @@ NOTES_FILENAME = "notes.bin"
 
 
 def execute_command(command, args, book, notes):
-
+    # contacts block
     if command.lower() == "all-contacts":
         result = ContactsOperations.show_all(book)
     elif command.lower() == "add-contact":
@@ -29,6 +29,7 @@ def execute_command(command, args, book, notes):
         result = PhoneOperations.show_phone(args, book)
     elif command.lower() == "remove-phone":
         result = PhoneOperations.remove_phone(args, book)
+        # birthdays block
     elif command.lower() == "show-birthdays":
         try:
             days_until_birthday = int(input("Enter the number of days: "))
@@ -39,14 +40,17 @@ def execute_command(command, args, book, notes):
         result = BirthdaysOperations.add_birthday(args, book)
     elif command.lower() == "show-birthday":
         result = BirthdaysOperations.show_birthday(args, book)
+        # address block
     elif command.lower() == "add-address":
         result = AddressesOperations.add_address(args, book)
     elif command.lower() == "show-address":
         result = AddressesOperations.show_address(args, book)
+        # email block
     elif command.lower() == "add-email":
         result = EmailsOperations.add_email(args, book)
     elif command.lower() == "show-email":
         result = EmailsOperations.show_email(args, book)
+        # notes block
     elif command.lower() == "all-notes":
         result = NotesOperations.show_all(notes)
     elif command.lower() == "add-note":
@@ -57,6 +61,7 @@ def execute_command(command, args, book, notes):
         result = NotesOperations.edit_note(args, notes)
     elif command.lower() == "delete-note":
         result = NotesOperations.delete_note(args, notes)
+        # general block
     elif command.lower() in ["close", "exit"]:
         result = "🖐 Good bye!"
         return result
@@ -86,10 +91,10 @@ def main() -> None:
             command, *args = parse_input(user_input)
 
             available_commands = [
-            "all", "add", "change", "delete", "phone", "remove-phone", "birthdays",
-            "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
-            "show-email", "all-notes", "add-note", "find-note", "edit-note", "delete-note",
-            "close", "exit", "hello"
+                "all-contacts", "add-contact", "edit-contact", "delete-contact", "show-phone", "remove-phone", "birthdays",
+                "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
+                "show-email", "all-notes", "add-note", "find-note", "edit-note", "delete-note",
+                "close", "exit", "hello"
             ]
 
             if command.lower() in available_commands:
@@ -99,7 +104,8 @@ def main() -> None:
                 if result == "🖐 Good bye!":
                     break
             else:
-                suggested_commands = get_suggested_commands(command, available_commands)
+                suggested_commands = get_suggested_commands(
+                    command, available_commands)
                 if suggested_commands:
                     print("Did you mean:", ', '.join(suggested_commands), "?")
                 else:
