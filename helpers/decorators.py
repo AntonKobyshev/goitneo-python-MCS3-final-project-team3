@@ -29,7 +29,7 @@ def input_error(func):
             return f"IndexError: {str(e)}"
         except ValueError as e:
             return f"ValueError: {str(e)}"
-        # except Exception as e:
-        #     return f"ExceptionError: {str(e)}"
+        except Exception as e:
+            return f"ExceptionError: {str(e)}"
 
     return inner
