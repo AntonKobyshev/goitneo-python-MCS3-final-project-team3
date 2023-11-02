@@ -4,7 +4,7 @@ def display_help():
     hello - Greet the bot and initiate a conversation
     all-contacts - Show all contacts
     add-contact [name] [phone] - Add a contact
-    find-contact [name or few characters] - Find a contact by params
+    find-contact [few characters or numbers for search] - Find a contact by params
     edit-contact [name] [old-phone] [new-phone] - Edit a contact
     delete-contact [name] - Delete a contact
     show-phone [name] - Show phone number of a contact
