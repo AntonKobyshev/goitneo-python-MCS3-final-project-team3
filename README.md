@@ -1,4 +1,4 @@
-This application is a bot assistant designed to manage contacts, notes, and other tasks. It offers the following functionalities:
+This application is a bot assistant developed to manage contacts, notes, and other tasks. It offers the following functionalities:
 
 1. Contact Management:
 
