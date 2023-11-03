@@ -18,8 +18,11 @@ def display_help():
     show-email [name] - Display the email address of a specific contact
     all-notes - Show all the notes stored in the assistant bot
     add-note [title] [content] - Add a new note
-    find-note [keyword] - Search for a note containing a specific keyword or phrase
-    edit-note [title] [old-content] [new-content] - Edit an existing note
+    add-note [title] [content] [#tag] - Add a new note with tag
+    find-note [keyword] - Search for a note by title containing a specific keyword or phrase 
+    find-notes-by-tag [#tag] - Search for a note by #tag
+    sort-notes-by-tag [#tag] - Sort notes by tag
+    edit-note [title] [new-content] - Edit an existing note
     delete-note [title] - Delete a specific note by specifying its ID
     close/exit - Exit the program
     """
