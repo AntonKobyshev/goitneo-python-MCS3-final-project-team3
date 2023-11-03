@@ -26,7 +26,7 @@ def main() -> None:
             available_commands = [
                 "all-contacts", "add-contact", "find-contact", "edit-contact", "delete-contact", "show-phone", "remove-phone", "show-birthdays",
                 "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
-                "show-email", "all-notes", "add-note", "find-note", "find-notes-by-tag", "edit-note", "delete-note",
+                "show-email", "all-notes", "add-note", "find-note", "find-notes-by-tag", "sort-notes-by-tag", "edit-note", "delete-note",
                 "close", "exit", "hello", "help"
             ]
 

@@ -13,38 +13,36 @@ class NotesOperations:
         return result if result else "❌ Your notes are empty."
 
     @input_error
-    def add_note(args, notes):
+    def add_note(args, notesbook):
         if len(args) < 3:
             return "❌ Give me a title, note text, and at least one tag."
         
         title = args[0]
         text = " ".join(args[1:-1])
-        tags = args[-1].split(',') 
-        new_note = Notes(title, text, tags)
-        notes[title] = new_note
-        return "✔️ Note added."
-
-    @input_error
-    def add_note(args, notes):
-        if len(args) < 2:
-            return "❌ Give me a title and note text."
-
-        title = args[0]
-        text = " ".join(args[1:-1])
         tags = set(args[-1].split(',')) if args[-1].startswith('#') else set()
-        new_note = Notes(title, text, tags)
-        notes[title] = new_note
+        notesbook.add_record(title, text, tags)
         return "✔️ Note added with tags." if tags else "✔️ Note added."
     
-    def find_notes_by_tag(args, notes):
+    @input_error
+    def find_notes_by_tag(args, notesbook):
         if len(args) != 1:
             return "❌ Please provide a single tag to search for."
         
-        tag = args[0].lstrip('#')
-        matching_notes = [str(note) for note in notes.values() if tag in note.tags]
+        tag = args[0]
+        matching_notes = [str(note) for note in notesbook.values() if tag in note.tags]
         return "\\n".join(matching_notes) if matching_notes else "❌ No notes found with that tag."
+        
+    @input_error
+    def find_note(args, notesbook):
+        if len(args) != 1:
+            return "❌ Please provide a title to search for."
+        
+        title = args[0]
+        matching_notes = [str(note) for note in notesbook.values() if title == note.title]
+        return "\\n".join(matching_notes) if matching_notes else "❌ No notes found with that title."
     
-    #def sort_notes_by_tag(self, args, notesbook):
+    @input_error
+    def sort_notes_by_tag(args, notesbook):
         tag = args[0] if args else None
         sorted_notes = notesbook.sort_notes_by_tag(tag)
         result = ""
@@ -55,19 +53,15 @@ class NotesOperations:
 
     @input_error
     def edit_note(args, notes):
-        if len(args) < 3:
-            return "❌ Give me a title, old text, and new text for editing."
+        if len(args) < 2:
+            return "❌ Give me a title, and new text for editing."
 
         title = args[0]
-        old_text = args[1]
-        new_text = " ".join(args[2:])
+        new_text = " ".join(args[1:])
         if title in notes:
             note = notes[title]
-            if note.text == old_text:
-                note.text = new_text
-                return "✔️ Note edited."
-            else:
-                return "❌ The old text does not match the note."
+            note.text = new_text
+            return "✔️ Note edited."
         else:
             return "❌ Note with that title not found."
 

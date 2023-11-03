@@ -54,8 +54,8 @@ def execute_command(command, args, book, notes):
         result = NotesOperations.add_note(args, notes)
     elif command.lower() == "find-notes-by-tag":
         result = NotesOperations.find_notes_by_tag(args, notes)
-    #elif command.lower() == "sort-notes-by-tag":
-        #result = notes_operations.sort_notes_by_tag(args, notesbook)
+    elif command.lower() == "sort-notes-by-tag":
+        result = NotesOperations.sort_notes_by_tag(args, notes)
     elif command.lower() == "find-note":
         result = NotesOperations.find_note(args, notes)
     elif command.lower() == "edit-note":

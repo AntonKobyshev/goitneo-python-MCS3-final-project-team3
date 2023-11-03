@@ -21,7 +21,7 @@ class NotesBook(UserDict):
     def find_by_tag(self, tag):
         return [record for record in self.data.values() if tag in record.tags]
     
-    # def sort_notes_by_tag(self, tag=None):
+    def sort_notes_by_tag(self, tag=None):
         if tag:
             notes_with_tag = [(title, note) for title, note in self.data.items() if tag in note.tags]
             return sorted(notes_with_tag, key=lambda item: item[0]) 
