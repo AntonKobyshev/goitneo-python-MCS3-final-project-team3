@@ -14,29 +14,44 @@ class NotesOperations:
 
     @input_error
     def add_note(args, notes):
-        if len(args) < 2:
-            return "❌ Give me a title and note text."
-
+        if len(args) < 3:
+            return "❌ Give me a title, note text, and at least one tag."
+        
         title = args[0]
-        text = " ".join(args[1:])
-        new_note = Notes(title, text)
+        text = " ".join(args[1:-1])
+        tags = args[-1].split(',') 
+        new_note = Notes(title, text, tags)
         notes[title] = new_note
         return "✔️ Note added."
 
     @input_error
-    def find_note(args, notes):
-        if len(args) < 1:
-            return "❌ Give me a search query."
+    def add_note(args, notes):
+        if len(args) < 2:
+            return "❌ Give me a title and note text."
 
-        query = " ".join(args)
-        matching_notes = []
-        for note in notes.values():
-            if query in note.title or query in note.text:
-                matching_notes.append(str(note))
-        if matching_notes:
-            return "\n".join(matching_notes)
-        else:
-            return "❌ No matching notes found."
+        title = args[0]
+        text = " ".join(args[1:-1])
+        tags = set(args[-1].split(',')) if args[-1].startswith('#') else set()
+        new_note = Notes(title, text, tags)
+        notes[title] = new_note
+        return "✔️ Note added with tags." if tags else "✔️ Note added."
+    
+    def find_notes_by_tag(args, notes):
+        if len(args) != 1:
+            return "❌ Please provide a single tag to search for."
+        
+        tag = args[0].lstrip('#')
+        matching_notes = [str(note) for note in notes.values() if tag in note.tags]
+        return "\\n".join(matching_notes) if matching_notes else "❌ No notes found with that tag."
+    
+    #def sort_notes_by_tag(self, args, notesbook):
+        tag = args[0] if args else None
+        sorted_notes = notesbook.sort_notes_by_tag(tag)
+        result = ""
+        for title, note in sorted_notes:
+            tags_formatted = ', '.join(sorted(note.tags)) if note.tags else 'No Tags'
+            result += f"Title: {title}\nTags: {tags_formatted}\n\n"
+        return result.rstrip("\n")
 
     @input_error
     def edit_note(args, notes):
