@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 # Ігнорувати файли та папки в кореневому каталозі, включаючи "db/"
-/db
+db/contacts.bin
+db/notes.bin
