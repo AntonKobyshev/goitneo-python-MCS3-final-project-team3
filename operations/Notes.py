@@ -1,5 +1,4 @@
 from helpers.decorators import input_error
-from models.Note import Notes
 
 class NotesOperations:
     def show_all(notes):
