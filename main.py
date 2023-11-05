@@ -9,6 +9,7 @@ from helpers.command_helper import get_suggested_commands
 CONTACTS_FILENAME = "contacts.bin"
 NOTES_FILENAME = "notes.bin"
 
+
 def main() -> None:
     logging.basicConfig(filename='app.log', level=logging.INFO)
     notes = NotesBook()
@@ -24,7 +25,7 @@ def main() -> None:
             command, *args = parse_input(user_input)
 
             available_commands = [
-                "all-contacts", "add-contact", "find-contact", "edit-contact", "delete-contact", "show-phone", "remove-phone", "show-birthdays",
+                "all-contacts", "add-contact", "add-phone", "find-contact", "edit-contact", "delete-contact", "remove-phone", "show-birthdays",
                 "add-birthday", "show-birthday", "add-address", "show-address", "add-email",
                 "show-email", "all-notes", "add-note", "find-note", "find-notes-by-tag", "sort-notes-by-tag", "edit-note", "delete-note",
                 "close", "exit", "hello", "help"

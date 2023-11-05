@@ -71,5 +71,5 @@ class ContactsOperations:
             return "Give me name please."
 
         name = args[0]
-        book.delete_record(name)
-        return "Contact deleted."
+        book.delete(name)
+        return "✔️ Contact deleted."

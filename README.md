@@ -56,6 +56,13 @@ The application assists users in managing their contact information and notes, m
 ✔️ Contact updated.
 ```
 
+- Add an additional phone number for the contact
+
+```
+⌨️ Enter a command: add-phone inna 1231231239
+✔️ Contact added.
+```
+
 - Add a birthday for the contact
 
 ```
@@ -84,6 +91,13 @@ The application assists users in managing their contact information and notes, m
 ⌨️ Enter a command:  all-contacts
 👤 Contact name: anton, phone(s): 1231231231, birthday: 23.12.1989
 👤 Contact name: bob, phone(s): 1234567899, email: bob@gmail.com, address: Kyiv, Hrushevskogo str, birthday: 25.11.1990
+```
+
+- Delete contact
+
+```
+⌨️ Enter a command: delete-contact anton
+Contact deleted.
 ```
 
 ---
