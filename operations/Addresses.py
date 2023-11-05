@@ -5,10 +5,12 @@ class AddressesOperations:
 
     @input_error
     def add_address(args, book):
-        if len(args) != 2:
-            return "❌ Give me some address please."
+        if len(args) < 2:
+            return "❌ Give me a name and an address please."
 
-        name, address = args
+        name = args[0]
+        address = " ".join(args[1:])
+
         record = book.find(name)
         record.add_address(address)
         return "✔️ Address added."

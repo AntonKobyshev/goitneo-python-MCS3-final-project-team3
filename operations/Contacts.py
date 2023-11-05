@@ -34,11 +34,6 @@ class ContactsOperations:
         return "✔️ Contact updated."
 
     @input_error
-    def delete_contact(args, book):
-        name = args[0]
-        book.delete(name)
-        return "✔️ Contact deleted."
-
     def find_contact(args, book):
         search_char = args[0]
 
@@ -50,10 +45,31 @@ class ContactsOperations:
         for record_name, record in book.data.items():
             if record.contains_char_or_digit(search_char):
                 phone_str = ', '.join(phone.value for phone in record.phones)
+                info = []
+                if record.email is not None:
+                    info.append(f"Email: {record.email}")
+                if record.address is not None:
+                    info.append(f"Address: {record.address}")
+                if record.birthday is not None:
+                    info.append(f"birthday: {record.birthday}")
+
+                info_str = ', '.join(info)
+                if info_str:
+                    info_str = f", {info_str}"
+
                 matching_records.append(
-                    f"👤 Name: {record.name.value}, Phone(s): {phone_str}, Email: {record.email}, Address: {record.address}, birthday: {record.birthday}")
+                    f"👤 Name: {record.name.value}, Phone(s): {phone_str}{info_str}")
 
         if not matching_records:
             return "❌ No matching contacts found."
 
         return "\n".join(matching_records)
+
+    @input_error
+    def delete_contact(args, book):
+        if len(args) != 1:
+            return "Give me name please."
+
+        name = args[0]
+        book.delete_record(name)
+        return "Contact deleted."

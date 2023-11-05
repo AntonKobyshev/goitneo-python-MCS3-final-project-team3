@@ -31,7 +31,7 @@ class Record:
         if address_str:
             result += f", address: {address_str}"
 
-        if address_str:
+        if birthday_str:
             result += f", birthday: {birthday_str}"
 
         return result
