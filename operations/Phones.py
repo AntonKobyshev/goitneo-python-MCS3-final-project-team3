@@ -1,5 +1,6 @@
 from helpers.decorators import input_error
 
+
 class PhoneOperations:
     @input_error
     def show_phone(args, book):
